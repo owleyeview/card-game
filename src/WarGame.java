@@ -2,6 +2,8 @@
 
 import java.util.*;
 
+import static java.util.Collections.shuffle;
+
 
 public class WarGame {//our game of war
 
@@ -14,8 +16,15 @@ public class WarGame {//our game of war
         do {
             numGames++;
             int thisGame = game();  // plays a game and returns 1 if the game is won, 0 otherwise
+            if (thisGame == 1) {
+                System.out.println();
+                System.out.println("********** YOU WIN!!! **********");
+            } else {
+                System.out.println();
+                System.out.println("---------- you have lost ----------");
+            }
             numWins += thisGame;  // tallys the number of wins
-            System.out.println("Hungry for more?");
+            System.out.println("          ......Hungry for more?");
             playing = scan.next().charAt(0);
         } while (playing == 'y' || playing == 'Y');
         System.out.printf("You won %d out of %d games", numWins, numGames);
@@ -39,6 +48,18 @@ public class WarGame {//our game of war
         do {
             try {System.in.read();}  // wait for press of the return key
             catch(Exception e) {}
+            if (playerStack.isEmpty()) {
+                playerStack = shuffleIn(playerStack, playerWinStack);
+                if (playerStack.isEmpty()) {
+                    return 0;
+                }
+            }
+            if (opponentStack.isEmpty()) {
+                opponentStack = shuffleIn(opponentStack, opponentWinStack);
+                if (opponentStack.isEmpty()) {
+                    return 1;
+                }
+            }
             playerBattleStack.push(playerStack.pop());  // flipping cards
             opponentBattleStack.push(opponentStack.pop());
             System.out.format("Your %s of %s vs their %s of %s%n",  // display what cards are battling
@@ -46,7 +67,7 @@ public class WarGame {//our game of war
                         opponentBattleStack.peek().getFaceName(), opponentBattleStack.peek().getSuitName());
             int battleResult = compare(playerBattleStack.peek(), opponentBattleStack.peek());  // determine the winner
             if (battleResult == 1) {  // the player wins
-                System.out.format("Your %s of %s wins!%n", playerBattleStack.peek().getFaceName(),
+                System.out.format("*****  Your %s of %s wins!%n", playerBattleStack.peek().getFaceName(),
                                                             playerBattleStack.peek().getSuitName());
                 while (!playerBattleStack.isEmpty()) { // the cards on the table go to the player
                     playerWinStack.push(playerBattleStack.pop());
@@ -55,7 +76,7 @@ public class WarGame {//our game of war
                     playerWinStack.push(opponentBattleStack.pop());
                 }
             } else if (battleResult == 2) {  //  the opponent wins
-                System.out.format("Their %s of %s wins!%n", opponentBattleStack.peek().getFaceName(),
+                System.out.format("       Their %s of %s wins!  *****%n", opponentBattleStack.peek().getFaceName(),
                                                                 opponentBattleStack.peek().getSuitName());
                 while (!playerBattleStack.isEmpty()) {  // the cards on the table go to the opponent
                     opponentWinStack.push(playerBattleStack.pop());
@@ -64,15 +85,29 @@ public class WarGame {//our game of war
                     opponentWinStack.push(opponentBattleStack.pop());
                 }
             } else if (battleResult == 0) {  // the cards have the same value
-                System.out.println("Tie! It's a flippin war!");
+                System.out.println("       Tie! It's a flippin war!");
+                System.out.println("     *****     *****     *****");
                 for (int i = 0; i < 3; i++) {  // both players flip 3 cards onto the table
+                    if (playerStack.isEmpty()) {
+                        playerStack = shuffleIn(playerStack, playerWinStack);
+                        if (playerStack.isEmpty()) {
+                            return 0;
+                        }
+                    }
+                    if (opponentStack.isEmpty()) {
+                    opponentStack = shuffleIn(opponentStack, opponentWinStack);
+                        if (opponentStack.isEmpty()) {
+                            return 1;
+                        }
+                    }
                     playerBattleStack.push(playerStack.pop());
                     opponentBattleStack.push(opponentStack.pop());
                 }
             }
-        } while (playerStack.size() < 52 && opponentStack.size() < 52);
+        // continue while no player has all the cards
+        } while (playerStack.size() + playerWinStack.size() < 52 && opponentStack.size() + opponentWinStack.size() < 52);
         if (playerStack.size() >= 52) {
-            return 1;
+            return 1;  // win count goes up
         } else if (opponentStack.size() >= 52) {
             return 0;
         } else {
@@ -80,7 +115,13 @@ public class WarGame {//our game of war
         }
     }
 
-
+    public static Stack<Card> shuffleIn(Stack<Card> playStack, Stack<Card> winStack) {
+        while (!winStack.isEmpty()) {
+            playStack.push(winStack.pop());
+        }
+        shuffle(playStack);
+        return playStack;
+    }
 
     public static void intro() {
         System.out.println("Welcome to War");
