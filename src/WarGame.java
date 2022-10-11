@@ -4,8 +4,8 @@ import java.util.*;
 
 import static java.util.Collections.shuffle;
 
-
-public class WarGame {//our game of war
+// our game of war
+public class WarGame {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -30,6 +30,7 @@ public class WarGame {//our game of war
         System.out.printf("You won %d out of %d games", numWins, numGames);
     }
 
+    // plays one game, returns 1 if the player won, returns 0 if the player lost
     public static int game() {
         Scanner s = new Scanner(System.in);
         Deck deck = new Deck();//makes deck
@@ -48,7 +49,7 @@ public class WarGame {//our game of war
         do {
             try {System.in.read();}  // wait for press of the return key
             catch(Exception e) {}
-            if (playerStack.isEmpty()) {
+            if (playerStack.isEmpty()) {  // checking if the discard stacks need to be shuffled in
                 playerStack = shuffleIn(playerStack, playerWinStack);
                 if (playerStack.isEmpty()) {
                     return 0;
@@ -88,33 +89,34 @@ public class WarGame {//our game of war
                 System.out.println("       Tie! It's a flippin war!");
                 System.out.println("     *****     *****     *****");
                 for (int i = 0; i < 3; i++) {  // both players flip 3 cards onto the table
-                    if (playerStack.isEmpty()) {
+                    if (playerStack.isEmpty()) {  // checking if the discard stacks need to be shuffled in
                         playerStack = shuffleIn(playerStack, playerWinStack);
-                        if (playerStack.isEmpty()) {
+                        if (playerStack.isEmpty()) {  // if the play stack is still empty after including the discard stack, the game is over
                             return 0;
                         }
                     }
                     if (opponentStack.isEmpty()) {
                     opponentStack = shuffleIn(opponentStack, opponentWinStack);
-                        if (opponentStack.isEmpty()) {
+                        if (opponentStack.isEmpty()) {  // if the play stack is still empty after including the discard stack, the game is over
                             return 1;
                         }
                     }
-                    playerBattleStack.push(playerStack.pop());
+                    playerBattleStack.push(playerStack.pop());    // flipping cards into the war 3x
                     opponentBattleStack.push(opponentStack.pop());
                 }
             }
-        // continue while no player has all the cards
+        // continue playing while no player has all the cards
         } while (playerStack.size() + playerWinStack.size() < 52 && opponentStack.size() + opponentWinStack.size() < 52);
-        if (playerStack.size() >= 52) {
+        if (playerStack.size() >= 52) {  // the player has all the cards
             return 1;  // win count goes up
-        } else if (opponentStack.size() >= 52) {
+        } else if (opponentStack.size() >= 52) {  // the opponent has all the cards
             return 0;
         } else {
             return 0;
         }
     }
 
+    // given 2 Stacks of cards, the stack of won cards is shuffled into the play stack and returned
     public static Stack<Card> shuffleIn(Stack<Card> playStack, Stack<Card> winStack) {
         while (!winStack.isEmpty()) {
             playStack.push(winStack.pop());
@@ -123,6 +125,7 @@ public class WarGame {//our game of war
         return playStack;
     }
 
+    // introduces the player to the game
     public static void intro() {
         System.out.println("Welcome to War");
         System.out.println("This is not a game");
@@ -130,7 +133,9 @@ public class WarGame {//our game of war
         System.out.println();
         System.out.println("--press the return key to flip cards--");
     }
-    public static int valueAssign(Card card) {  // assigns rank value to card
+
+    // given a Card object, returns an int value
+    public static int valueAssign(Card card) {
         int value;
         if (card.getFaceName().equals("jack")) {
             value = 11;
@@ -151,6 +156,7 @@ public class WarGame {//our game of war
         return value;
     }
 
+    // given 2 Cards, compares them and returns an int value indicating which one is higher of if they are equal
     public static int compare(Card card1, Card card2) {
         int cardValue1 = valueAssign(card1);
         int cardValue2 = valueAssign(card2);
