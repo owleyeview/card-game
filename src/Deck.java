@@ -19,6 +19,21 @@ public class Deck {  // a class for creating deck objects for use in different g
         }
     }
 
+    public boolean hasCards() {  // returns true if there are any cards in the deck
+        if (deck.size() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public Stack<Card> getDeck() {
+        return deck;
+    }
+
+    public void setDeck(Stack<Card> deck) {
+        this.deck = deck;
+    }
+
     public Card getTopCard() {  // returns the top card in the deck
         return deck.pop();
     }
