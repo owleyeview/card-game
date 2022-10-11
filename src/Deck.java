@@ -19,10 +19,32 @@ public class Deck {  // a class for creating deck objects for use in different g
         }
     }
 
-    public Card getTopCard() {  // returns the top card in the deck
+    // returns true if there are any cards in the deck
+    public boolean hasCards() {
+        if (deck.size() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    // returns a Deck object
+    public Stack<Card> getDeck() {
+        return deck;
+    }
+
+    // assigns a Stack of Card objects to the deck
+    public void setDeck(Stack<Card> deck) {
+        this.deck = deck;
+    }
+
+    // returns the top card in the deck
+    public Card getTopCard() {
         return deck.pop();
     }
-    public void shuffle() {  // method for shuffling the deck
+
+    // method for shuffling a Deck object
+    public void shuffle() {
         Collections.shuffle(deck);  // Java library shuffle method
 
 //        int deckSize = deck.size();

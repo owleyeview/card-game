@@ -10,5 +10,6 @@ public class Test {   // a class for testing purposes
         deck1.shuffle();  // shuffle deck1
         System.out.println(deck1);
         System.out.println(deck1.getTopCard());  // display the top card of the deck after shuffling
+         // remove the top card
     }
 }
