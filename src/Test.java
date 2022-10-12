@@ -6,10 +6,10 @@ public class Test {   // a class for testing purposes
         System.out.println(card1.getSuitName());
         Deck deck1 = new Deck();
         System.out.println(deck1);
-        System.out.println(deck1.getTopCard()); // display the top card
+        System.out.println(deck1.seeTopCard()); // display the top card
         deck1.shuffle();  // shuffle deck1
         System.out.println(deck1);
-        System.out.println(deck1.getTopCard());  // display the top card of the deck after shuffling
+        System.out.println(deck1.seeTopCard());  // display the top card of the deck after shuffling
          // remove the top card
     }
 }

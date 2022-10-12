@@ -166,7 +166,6 @@ public class WarGame {
             return 2;
         } else {
             return 0;
-
         }
     }
 }

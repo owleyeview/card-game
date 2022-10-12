@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="578d51df-8591-40ad-a652-4284900c1a49" name="Changes" comment="war game is functional">
+    <list default="true" id="578d51df-8591-40ad-a652-4284900c1a49" name="Changes" comment="some cleanup and more comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WarGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WarGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +53,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.WarGame">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="card-game" />
@@ -69,8 +70,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.WarGame" />
         <item itemvalue="Application.Test" />
+        <item itemvalue="Application.WarGame" />
       </list>
     </recent_temporary>
   </component>
@@ -111,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665529200918</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="some cleanup and more comments">
+      <created>1665530664984</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665530664984</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -130,7 +138,8 @@
     <MESSAGE value="added comments" />
     <MESSAGE value="group war game crashes with empty stacks" />
     <MESSAGE value="war game is functional" />
-    <option name="LAST_COMMIT_MESSAGE" value="war game is functional" />
+    <MESSAGE value="some cleanup and more comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="some cleanup and more comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
