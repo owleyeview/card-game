@@ -48,10 +48,9 @@ public class Deck {  // a class for creating deck objects for use in different g
     public Card seeTopCard() {
         return deck.peek();
     }
+
     // method for shuffling a Deck object
     public void shuffle() {
-//        Collections.shuffle(deck);  // Java library shuffle method
-
         int deckSize = deck.size();
         for (int i = 0; i < 3; i++) {
             int randomNum = ThreadLocalRandom.current().nextInt(-5, 5 + 1); // to vary the cut size
@@ -60,7 +59,7 @@ public class Deck {  // a class for creating deck objects for use in different g
             for (int j = 0; j < (deckSize / 2 + randomNum); j++) { // a random 'cut' of about half of the deck
                 cut.add(deck.pop());
             }
-            while (!deck.isEmpty() && !cut.isEmpty()) {  // This stacks the shuffledDeck with one card from each half of the original deck. Some randomness is needed here too
+            while (!deck.isEmpty() && !cut.isEmpty()) {  // This stacks the shuffledDeck with one card from each half of the original deck.
                 int add1 = ThreadLocalRandom.current().nextInt(0, 1 + 1);
                 if (add1 == 1) {
                     shuffledDeck.push(deck.pop());
